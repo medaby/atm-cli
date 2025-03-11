@@ -20,7 +20,7 @@ public class Mask {
                     }
                 } else if (ch == 27) { // Éviter les touches spéciales (ESC, Flèches, etc.)
                     continue;
-                } else if (ch >= '0' && ch <= '9') { // Accepter uniquement les chiffres
+                } else if (ch >= '0' && ch <= '9'&& input.length()<4) {
                     input.append((char) ch); // Ajouter le chiffre à la variable
                     System.out.print("*"); // Afficher un *
                 } else if (ch == 127 || ch == 46) { // Gérer la touche "Delete"
