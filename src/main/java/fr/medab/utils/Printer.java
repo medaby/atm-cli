@@ -7,4 +7,10 @@ public class Printer {
         String resetText = "\u001B[0m";
         System.out.println(greenText + message + resetText);
     }
+    public static void error(String message) {
+        // Code ANSI pour le texte rouge
+        String redText = "\u001B[31m";
+        String resetText = "\u001B[0m";
+        System.out.println(redText + message + resetText);
+    }
 }
