@@ -7,5 +7,6 @@ import java.util.List;
 public interface BankDataSource {
     List<BankAccount> getAccounts();
     String getBankName();
-    BankAccount getAccount(String accountNumber);
+    BankAccount findByAccountNumber(String accountNumber);
+    BankAccount findOneByAccountNumber(String accountNumber);
 }

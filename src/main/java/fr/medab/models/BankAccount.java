@@ -80,4 +80,8 @@ public class BankAccount {
         return owner;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
 }

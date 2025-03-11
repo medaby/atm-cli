@@ -18,7 +18,7 @@ public class AuthenticationCardImpl implements AuthenticationCard {
     public BankAccount checkCredentials(String serialNumber, String pin) {
         CreditCard creditCard = creditCardDataSource.getCreditCard(serialNumber);
         if (creditCard.getHashPin().equals(pin)) {
-            return bankDataSource.getAccount(creditCard.getBankAccount().getAccountNumber());
+            return bankDataSource.findByAccountNumber(creditCard.getBankAccount().getAccountNumber());
         }
         return null;
     }

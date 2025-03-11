@@ -8,4 +8,6 @@ import java.util.List;
 public interface CreditCardDataSource {
     List<CreditCard> getCreditCards();
     CreditCard getCreditCard(String accountNumber);
+    void hashAllPins();
+    String getBankName();
 }

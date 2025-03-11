@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fr.medab.utils.CSVFileReader.readCSV;
+
 public class CSVFileWriter {
 
     public static void updateCSVField(String filePath, String fileDelimiter, int row, int col, String newValue) {
@@ -32,6 +34,25 @@ public class CSVFileWriter {
         try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
             for (String[] record : records) {
                 pw.println(String.join(fileDelimiter, record));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void hashAllPins(String fileDelimiter, String filePath) {
+        List<String[]> records = readCSV(fileDelimiter, filePath);
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath))) {
+            // Write the header
+            bw.write("autoincrement,guid,iban,accountType,balance,Currency,fullname,iban,cvv,pin");
+            bw.newLine();
+            for (String[] record : records) {
+                // Hash the PIN
+                record[9] = HashPin.hash(record[9]);
+                // Write the updated record
+                bw.write(String.join(fileDelimiter, record));
+                bw.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();

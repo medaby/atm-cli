@@ -7,6 +7,8 @@ import fr.medab.models.BankNoteValue;
 import fr.medab.services.AutomatonATMService;
 import fr.medab.services.AutomatonATMServiceImpl;
 import fr.medab.sources.FileBankDataSource;
+import fr.medab.sources.FileCreditCardDatasource;
+import fr.medab.utils.Printer;
 
 import java.util.List;
 import java.util.Map;
@@ -38,23 +40,30 @@ public class InitialisationATM {
         // lit les comptes bancaires du fichier CSV
         List<BankAccount> accounts = dataSource.getAccounts();
 
-        // Code ANSI pour le texte vert
-        String greenText = "\u001B[32m";
-        String resetText = "\u001B[0m";
-
-        System.out.println( greenText + "Toues les comptes sont chargé: " + accounts.size() + " Compte(s)" + resetText);
+        Printer.print("Toues les comptes sont chargé: " + accounts.size() + " Compte(s)" );
         // Use the service methods
-        System.out.println(greenText + "Montant Total Disponible du GAB: " + atmService.getTotalAmount()+ resetText);
+        Printer.print("Montant Total Disponible du GAB: " + atmService.getTotalAmount());
         int amountToWithdraw = 500;
         if (atmService.checkAvailabilityCache(amountToWithdraw)) {
-            System.out.println("Le montant de " + amountToWithdraw + " est disponible pour le retrait.");
+            Printer.print("Le montant de " + amountToWithdraw + " est disponible pour le retrait.");
         } else {
-            System.out.println("Le montant de " + amountToWithdraw + " n'est pas disponible pour le retrait.");
+            Printer.print("Le montant de " + amountToWithdraw + " n'est pas disponible pour le retrait.");
         }
 
         // Créer l'instance AutomatonATMClI
         AutomatonATMClI atmClI = new AutomatonATMClI(atmService, automatonATM);
         // Démarrer l'interface utilisateur
+
+        // credit card gestion
+        FileCreditCardDatasource datasource = new FileCreditCardDatasource(
+                ",",
+                "BankName","./src/main/resources/data/files/" + csvFilePath);
+
+        CreditCardCLI cli = new CreditCardCLI(datasource);
+        cli.displayMenu();
+
+        HashAllPinsCLI cliHashAllPins = new HashAllPinsCLI(datasource);
+        cliHashAllPins.displayMenu();
         atmClI.start();
     }
 

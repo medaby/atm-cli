@@ -4,6 +4,7 @@ import fr.medab.models.AutomatonATM;
 import fr.medab.models.BankNoteValue;
 import fr.medab.services.AutomatonATMService;
 import fr.medab.services.AutomatonATMServiceImpl;
+import fr.medab.utils.Printer;
 
 import java.util.Scanner;
 
@@ -49,17 +50,17 @@ public class AutomatonATMClI {
 
     private void checkTotalAmount() {
         int totalAmount = atmService.getTotalAmount();
-        System.out.println("Montant total disponible : " + totalAmount);
+        Printer.print( "Montant total disponible : " + totalAmount);
     }
 
     private void checkAvailability() {
-        System.out.print("Entrez le montant à retirer :");
+        Printer.print("Entrez le montant à retirer :");
         int amount = scanner.nextInt();
         boolean available = atmService.checkAvailabilityCache(amount);
         if (available) {
-            System.out.println("Le montant est disponible pour le retrait.");
+            Printer.print("Le montant est disponible pour le retrait.");
         } else {
-            System.out.println("Le montant n'est pas disponible pour le retrait.");
+            Printer.print("Le montant n'est pas disponible pour le retrait.");
         }
     }
 
@@ -89,10 +90,10 @@ public class AutomatonATMClI {
                 bankNoteValue = BankNoteValue.FIVE_HUNDRED;
                 break;
             default:
-                System.out.println("Invalid banknote value.");
+                Printer.print("Invalid banknote value.");
                 return;
         }
         atmService.loadBankNotes(bankNoteValue, quantity);
-        System.out.println("Banknotes loaded successfully.");
+        Printer.print("Banknotes loaded successfully.");
     }
 }
