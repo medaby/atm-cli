@@ -49,7 +49,7 @@ public class CSVFileWriter {
             bw.newLine();
             for (String[] record : records) {
                 // Hash the PIN
-                record[9] = HashPin.hash(record[9]);
+                record[10] = HashPin.hash(record[10]);
                 // Write the updated record
                 bw.write(String.join(fileDelimiter, record));
                 bw.newLine();

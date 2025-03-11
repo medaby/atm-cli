@@ -16,9 +16,9 @@ import java.util.Map;
 import static fr.medab.services.AutomatonATMServiceImpl.feedCashATM;
 
 public class InitialisationATM {
-    public static void chargementATM(String[] args) {
+    public static void chargementATM(java.lang.String[] args) {
         // Default CSV file path
-        String csvFilePath = "sg.csv";
+        java.lang.String csvFilePath = "sg.csv";
 
         // Vérifie si un chemin de fichier CSV est passé en argument
         if (args.length > 0) {
@@ -50,20 +50,20 @@ public class InitialisationATM {
             Printer.print("Le montant de " + amountToWithdraw + " n'est pas disponible pour le retrait.");
         }
 
-        // Créer l'instance AutomatonATMClI
-        AutomatonATMClI atmClI = new AutomatonATMClI(atmService, automatonATM);
-        // Démarrer l'interface utilisateur
-
         // credit card gestion
         FileCreditCardDatasource datasource = new FileCreditCardDatasource(
                 ",",
                 "BankName","./src/main/resources/data/files/" + csvFilePath);
 
+//        HashAllPinsCLI cliHashAllPins = new HashAllPinsCLI(datasource);
+//        cliHashAllPins.displayMenu();
+
         CreditCardCLI cli = new CreditCardCLI(datasource);
         cli.displayMenu();
 
-        HashAllPinsCLI cliHashAllPins = new HashAllPinsCLI(datasource);
-        cliHashAllPins.displayMenu();
+        // Créer l'instance AutomatonATMClI
+        AutomatonATMClI atmClI = new AutomatonATMClI(atmService, automatonATM);
+        // Démarrer l'interface utilisateur
         atmClI.start();
     }
 

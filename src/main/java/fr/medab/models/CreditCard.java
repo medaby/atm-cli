@@ -3,7 +3,7 @@ package fr.medab.models;
 import java.time.LocalDateTime;
 
 public class CreditCard {
-    private BankAccount bankAccount;
+    private String accountNumber;
     private String serialNumber;
     private String hashPin;
     private boolean isBlocked;
@@ -12,8 +12,8 @@ public class CreditCard {
     private String cvv;
     private LocalDateTime expirationDate;
 
-    public CreditCard(BankAccount bankAccount, String serialNumber, String hashPin, boolean isBlocked, Client owner, String type, String cvv, LocalDateTime expirationDate) {
-        this.bankAccount = bankAccount;
+    public CreditCard(String accountNumber, String serialNumber, String hashPin, boolean isBlocked, Client owner, String type, String cvv, LocalDateTime expirationDate) {
+        this.accountNumber = accountNumber;
         this.serialNumber = serialNumber;
         this.hashPin = hashPin;
         this.isBlocked = isBlocked;
@@ -24,7 +24,7 @@ public class CreditCard {
     }
 
     private CreditCard(Builder builder) {
-        bankAccount = builder.bankAccount;
+        accountNumber = builder.accountNumber;
         serialNumber = builder.serialNumber;
         hashPin = builder.hashPin;
         isBlocked = builder.isBlocked;
@@ -36,7 +36,7 @@ public class CreditCard {
 
 
     public static final class Builder {
-        private BankAccount bankAccount;
+        private String accountNumber;
         private String serialNumber;
         private String hashPin;
         private boolean isBlocked;
@@ -45,15 +45,15 @@ public class CreditCard {
         private String cvv;
         private LocalDateTime expirationDate;
 
-        private Builder() {
+        public Builder() {
         }
 
         public static Builder builder() {
             return new Builder();
         }
 
-        public Builder bankAccount(BankAccount val) {
-            bankAccount = val;
+        public Builder accountNumber(String val) {
+            accountNumber = val;
             return this;
         }
 
@@ -98,8 +98,8 @@ public class CreditCard {
     }
 
 
-    public BankAccount getBankAccount() {
-        return bankAccount;
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
     public String getSerialNumber() {

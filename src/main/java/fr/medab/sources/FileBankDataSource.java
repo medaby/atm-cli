@@ -14,7 +14,7 @@ public class FileBankDataSource implements BankDataSource {
     private String bankName;
     private String filePath;
 
-    public FileBankDataSource( String fileDelimiter, String bankName, String filePath) {
+    public FileBankDataSource(String fileDelimiter, String bankName, String filePath) {
         this.fileDelimiter = fileDelimiter;
         this.bankName = bankName;
         this.filePath = filePath;
