@@ -6,6 +6,7 @@ import fr.medab.services.AutomatonATMService;
 import fr.medab.services.AutomatonATMServiceImpl;
 import fr.medab.utils.Printer;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class AutomatonATMClI {
@@ -14,6 +15,11 @@ public class AutomatonATMClI {
     private final AutomatonATM automatonATM;
 
     public AutomatonATMClI(AutomatonATMService atmService,AutomatonATM automatonATM) {
+        try {
+            new ProcessBuilder("sh", "-c", "stty echo icanon").inheritIO().start().waitFor();
+        } catch (InterruptedException | IOException e) {
+            throw new RuntimeException(e);
+        }
         this.atmService = atmService;
         this.automatonATM = automatonATM;
         this.scanner = new Scanner(System.in);

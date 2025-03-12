@@ -25,12 +25,15 @@ public class AuthenticationCardImpl implements AuthenticationCard {
         return null;
     }
 
-    public static void authenticate(CreditCard creditCard, String pin) {
+    @Override
+    public BankAccount authenticate(CreditCard creditCard, String pin) {
         if (creditCard != null && HashPin.validate(pin, creditCard.getHashPin())) {
-            Printer.print("✅ Access granted...");
-            // Add further application logic here
+            Printer.print(" ✅ Access granted...");
+            System.out.println(creditCard.getAccountNumber());
+            return bankDataSource.findByAccountNumber(creditCard.getAccountNumber());
         } else {
             Printer.error(" ⛔️ Invalid serial number or PIN.");
+            return null;
         }
     }
 }

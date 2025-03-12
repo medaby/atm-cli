@@ -16,9 +16,9 @@ import java.util.Map;
 import static fr.medab.services.AutomatonATMServiceImpl.feedCashATM;
 
 public class InitialisationATM {
-    public static void chargementATM(java.lang.String[] args) {
+    public static void chargementATM(String[] args) {
         // Default CSV file path
-        java.lang.String csvFilePath = "sg.csv";
+        String csvFilePath = "sg.csv";
 
         // Vérifie si un chemin de fichier CSV est passé en argument
         if (args.length > 0) {
@@ -51,14 +51,20 @@ public class InitialisationATM {
         }
 
         // credit card gestion
-        FileCreditCardDatasource datasource = new FileCreditCardDatasource(
+        FileCreditCardDatasource creditCardDatasource = new FileCreditCardDatasource(
                 ",",
                 "BankName","./src/main/resources/data/files/" + csvFilePath);
+
+        FileBankDataSource bankDataSource = new FileBankDataSource(
+                ",",
+                "BankName","./src/main/resources/data/files/" + csvFilePath);
+
+
 
 //        HashAllPinsCLI cliHashAllPins = new HashAllPinsCLI(datasource);
 //        cliHashAllPins.displayMenu();
 
-        CreditCardCLI cli = new CreditCardCLI(datasource);
+        CreditCardCLI cli = new CreditCardCLI(creditCardDatasource, bankDataSource);
         cli.displayMenu();
 
         // Créer l'instance AutomatonATMClI

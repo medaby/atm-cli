@@ -1,15 +1,20 @@
 package fr.medab.ui.cli;
 
+import fr.medab.models.BankAccount;
 import fr.medab.models.CreditCard;
+import fr.medab.services.AuthenticationCard;
 import fr.medab.services.AuthenticationCardImpl;
+import fr.medab.sources.FileBankDataSource;
 import fr.medab.sources.FileCreditCardDatasource;
 import fr.medab.utils.Mask;
 
 public class CreditCardCLI {
-    private FileCreditCardDatasource datasource;
+    private FileCreditCardDatasource creditCardDatasource;
+    private FileBankDataSource bankDataSource;
 
-    public CreditCardCLI(FileCreditCardDatasource datasource) {
-        this.datasource = datasource;
+    public CreditCardCLI(FileCreditCardDatasource creditCardDatasource, FileBankDataSource bankDataSource) {
+        this.creditCardDatasource = creditCardDatasource;
+        this.bankDataSource = bankDataSource;
     }
 
     public void displayMenu() {
@@ -22,10 +27,13 @@ public class CreditCardCLI {
         System.out.println("\nSerial number: " + serialNumber);
         System.out.println("PIN: " + pin);
 
-
-        CreditCard creditCard = datasource.getCreditCard(serialNumber);
-        System.out.println(creditCard.getAccountNumber());
-        AuthenticationCardImpl.authenticate(creditCard, pin);
+        AuthenticationCard authenticationCard = new AuthenticationCardImpl(creditCardDatasource, bankDataSource);
+        CreditCard creditCard = creditCardDatasource.getCreditCard(serialNumber);
+        BankAccount bankAccount = authenticationCard.authenticate(creditCard, pin);
+        if (bankAccount == null) {
+            System.out.println(" 👋🏼 Aurevoir !!!!");
+           System.exit(0);
+        }
     }
 
 
