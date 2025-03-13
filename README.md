@@ -11,7 +11,7 @@
 <img width="1330" alt="Capture d’écran 2025-03-13 à 14 25 05" src="https://github.com/user-attachments/assets/445988f3-9b54-462d-8be8-96c313550123" />
 
 # Use Case: ATM System
-<img width="1332" alt="Capture d’écran 2025-03-13 à 13 04 34" src="https://github.com/user-attachments/assets/8eb3daa1-6f86-4f72-826d-63b28f7543bc" />
+<img width="1129" alt="use case ATM" src="https://github.com/user-attachments/assets/7b5b1229-3172-4991-8f86-6fe4ab14f5a8" />
 
 # Class Diagram: ATM System
 <img width="1336" alt="Capture d’écran 2025-03-13 à 13 55 59" src="https://github.com/user-attachments/assets/2f892af7-2440-41ae-b4fa-b266d08d6856" />
