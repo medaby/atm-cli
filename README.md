@@ -14,5 +14,5 @@
 <img width="1332" alt="Capture d’écran 2025-03-13 à 13 04 34" src="https://github.com/user-attachments/assets/8eb3daa1-6f86-4f72-826d-63b28f7543bc" />
 
 # Class Diagram: ATM System
-<img width="1336" alt="Capture d’écran 2025-03-13 à 13 55 59" src="https://github.com/user-attachments/assets/c25508d3-da7b-4330-a013-a6f40e30f306" />
+<img width="1336" alt="Capture d’écran 2025-03-13 à 13 55 59" src="https://github.com/user-attachments/assets/2f892af7-2440-41ae-b4fa-b266d08d6856" />
 
